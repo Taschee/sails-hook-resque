@@ -2,9 +2,12 @@
  * Module dependencies
  */
 
-var Sails = require('sails').Sails;
+var sails = require('sails');
 var _ = require('lodash');
 var async = require('async');
+
+// Set global sails instance
+global.sails = sails;
 
 // Use a weird port to avoid tests failing if we
 // forget to shut down another Sails app
@@ -40,18 +43,14 @@ module.exports = {
     if (!_.isPlainObject(config)) {
       config = {};
     }
-    // New up an instance of Sails and lift it.
-    var app = Sails(); //jshint ignore:line
 
-    app.lift(_.defaults(defaultConfig, config), function (err) {
+    // lift sails.
+    sails.lift(_.defaults(defaultConfig, config), function (err) {
       if (err) {
         return done(err);
       }
 
-      // Set global sails instance
-      global.sails = app;
-
-      return done(err, app);
+      return done(err, sails);
     });
 
   },
