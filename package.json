@@ -1,7 +1,7 @@
 {
-  "name": "sails-hook-resque",
-  "version": "1.1.3",
-  "description": "Resque support for sails.js",
+  "name": "@edy/sails-hook-resque",
+  "version": "2.0.0",
+  "description": "Resque support for sails.js v1.0",
   "main": "index.js",
   "sails": {
     "isHook": true
