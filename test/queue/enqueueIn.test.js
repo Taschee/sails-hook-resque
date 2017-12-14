@@ -11,16 +11,16 @@ describe('Queue - enqueueIn :: ', function () {
     expect(sails.resque.queue).to.be.an('object');
   });
 
-  it('should enqueue a task', function (done) {
-    sails.resque.queue.enqueueIn(500, 'math', 'add', [1, 2], function (err) {
+  it('should enqueue a task', async function (done) {
+    try {
+      const enqueued = await sails.resque.queue.enqueueIn(500, 'math', 'add', [1, 2]);
+      const length = await sails.resque.queue.length('math');
+      expect(length).to.be.eq(1);
+      done();
+    } catch (err) {
       expect(err).to.not.exist;
-
-      sails.resque.queue.length('math', function (err, value) {
-        expect(err).to.not.exist;
-        expect(value).to.be.eq(1);
-        done();
-      });
-    });
+      done(err);
+    }
   });
 
 });

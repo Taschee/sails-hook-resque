@@ -1,6 +1,6 @@
 {
   "name": "@edy/sails-hook-resque",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Resque support for sails.js v1.0",
   "main": "index.js",
   "sails": {
@@ -27,13 +27,14 @@
   },
   "homepage": "https://github.com/konstantinzolotarev/sails-hook-resque",
   "dependencies": {
-    "node-resque": "^4.0.9"
+    "node-resque": "^5.0.2"
   },
   "devDependencies": {
+    "async": "^2.6.0",
     "chai": "^4.1.2",
-    "chance": "^1.0.11",
+    "chance": "^1.0.12",
     "mocha": "^4.0.1",
     "sails": "^1.0.0-37",
-    "sinon": "^4.0.1"
+    "sinon": "^4.1.3"
   }
 }

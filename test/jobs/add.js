@@ -5,7 +5,7 @@ module.exports = {
   pluginOptions: {
     jobLock: {},
   },
-  perform: function(a, b, callback) {
-    callback(null, (a + b));
+  perform: function(a, b) {
+    return a + b;
   },
 };
