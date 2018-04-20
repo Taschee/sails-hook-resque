@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  plugins: ['jobLock'],
+  plugins: ['JobLock'],
   pluginOptions: {
     jobLock: {},
   },

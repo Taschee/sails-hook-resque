@@ -10,19 +10,16 @@ describe('Queue - enqueue :: ', function () {
     expect(sails.resque.queue).to.be.an('object');
   });
 
-  it('should enqueue a task', async function (done) {
-    try {
-      const enqueued = await sails.resque.queue.enqueue('math', 'add', [1, 2]);
-      console.log('ENQ', enqueued);
-      const length = await sails.resque.queue.length(q)
-      console.log('LEN', length);
-      expect(length).to.be.eq(1);
-      done()
-    } catch (err) {
-      console.error('FEHLER', err)
-      expect(err).to.not.exist;
-      done(err)
-    }
+  it('should enqueue a task', async function () {
+      await sails.resque.queue.enqueue('math', 'add', [1, 2]);
+      await sails.resque.queue.enqueue('math', 'add', [3, 4]);
+      const length = await sails.resque.queue.length('math')
+      expect(length).to.be.eq(2);
   });
 
+  after(async () => {
+    // cleanup queue
+    await sails.resque.queue.del('math', 'add', [1, 2]);
+    await sails.resque.queue.del('math', 'add', [3, 4]);
+  });
 });
