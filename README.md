@@ -1,5 +1,5 @@
 # sails-hook-resque
-[![Build Status](https://travis-ci.org/konstantinzolotarev/sails-hook-resque.svg)](https://travis-ci.org/konstantinzolotarev/sails-hook-resque)
+[![Build Status](https://travis-ci.org/edy/sails-hook-resque.svg)](https://travis-ci.org/edy/sails-hook-resque)
 
 Delayed tasks in Sails.js app. Using node-resque
 
@@ -17,17 +17,16 @@ Create a task in `api/jobs/add.js` :
 
 ```javascript
 module.exports = {
-    plugins: [ 'jobLock' ],
-    pluginOptions: {
-      jobLock: {},
-    },
-    perform: function(a, b, callback){
-      setTimeout(function(){
-        var answer = a + b;
-        callback(null, answer);
-      }, 1000);
-    },
-  };
+  plugins: [ 'JobLock' ],
+  pluginOptions: {
+    jobLock: {},
+  },
+  perform: async (a, b) => {
+    const answer = a + b;
+    await new Promise((r) => setTimeout(r, 1000));
+    return answer;
+  },
+};
 ```
 
 And queue it in your application:
